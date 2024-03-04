@@ -1,0 +1,142 @@
+{% extends "main_template.html"%}
+
+{% block title %}
+방 찾기
+{% endblock %}
+
+{% block nav_container %}
+<nav class="find_rooms">
+        <header
+            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <ul class="nav col-12 col-md-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" >CO Love House</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/enter" >COEnter Love House</a>
+                    </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/admins">관리자 페이지</a>
+                </li>
+            </ul>
+            </div>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li class="nav-item">
+                <a class="nav-link"  href="/room/find_rooms">방 찾기</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">공지사항</a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item" class="dropdown-item"><a href="/notice/notices">공지사항</a></li>
+                    <li class="nav-item" class="dropdown-item"><a href="/notice/introductions">사이트 소개</a></li>
+                    <li class="nav-item" class="dropdown-item"><a href="/notice/faqs">FAQ</a></li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">커뮤니티</a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item" class="dropdown-item"><a href="/community/communities">커뮤니티 소개</a></li>
+                    <li class="nav-item" class="dropdown-item"><a href="/community/promotions">프로모션</a></li>
+                    <li class="nav-item" class="dropdown-item"><a href="/community/moveinreviews">입주 후기</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+            <form action="/login/logins" method="get">
+                <button type="submit" class="btn btn-outline-primary me-2">Login</button>
+            </form>
+            <!-- <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link" href="/mypage/mypages">마이페이지</a>
+                </li>
+            </ul> -->
+        </div>
+    </header>
+{% endblock %}
+
+{% block main_container %}
+<main class="find_rooms">
+    <div class="row">
+        <!-- 방 찾기 부분 -->
+        <div class="col-6">
+            <!-- 검색 부분 -->
+            <form action="">
+                <div class="search_rooms_box">
+                    <div class="search_rooms row">
+                        <div class="col-2">
+                            <select class="form-control" name="room_brand">
+                                <option value="">브랜드</option>
+                                <option value="dears" {{ 'selected' if search_dict.room_brand=='dears' else '' }}>디어스</option>
+                                <option value="mangrove" {{ 'selected' if search_dict.room_brand=='mangrove' else '' }}>맹그로브</option>
+                                <option value="hapoom" {{ 'selected' if search_dict.room_brand=='hapoom' else '' }}>하품</option>
+                                <option value="commontown" {{ 'selected' if search_dict.room_brand=='commontown' else '' }}>커먼타운</option>
+                                <option value="episode" {{ 'selected' if search_dict.room_brand=='episode' else '' }}>에피소드</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <select class="form-control" name="room_type">
+                                <option value="">룸 형태</option>
+                                <option value="single" {{ 'selected' if search_dict.room_type=='single' else '' }}>1인실</option>
+                                <option value="double" {{ 'selected' if search_dict.room_type=='double' else '' }}>2인실</option>
+                                <option value="dormitory" {{ 'selected' if search_dict.room_type=='dormitory' else ''}}>다인실</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <input class=searchcss type="search" placeholder="지역명을 입력해 보세요" name="search"
+                                value="{{search_dict.search}}">
+                        </div>
+                        <div class="col-2">
+                            <button type="submit" class="searchbutton btn btn-outline-primary"
+                                formaction="/room/find_rooms" formmethod="post">검색</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {% if rooms == False %}
+            <p>{{ message }}</p>
+            {% else %}
+            <!-- 방 나열 부분 -->
+            <div class="album py-3 bg-body-tertiary">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        {% for room in rooms %}
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <a href="/room/room_details/{{room.id}}">
+                                        <div class="card-img-top">
+                                            <img class="roomimg"
+                                                src="{{ room.room_image }}">
+                                        </div>
+                                        <div class="card-body">
+                                            <span class="brand">{{ room.room_brand }}</span>
+                                            <span class="local">{{ room.room_local }}</span>
+                                            <span class="title">{{ room.room_title }}</span>
+                                            <div class="room_type">{{ room.room_type }}</div>
+                                            <div class="room_size">{{ room.room_size }}</div>
+                                            <span class="favorite">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-sm btn-outline-danger">찜</button>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        
+    <!-- 지도 부분 -->
+    <div class="col-6">
+        <img src="/images/map.PNG" alt="">
+    </div>
+</div>
+
+{% endblock %}

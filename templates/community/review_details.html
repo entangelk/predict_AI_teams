@@ -1,0 +1,45 @@
+{% extends "main_template.html"%}
+
+{% block title %}
+입주후기 내용
+{% endblock %}
+
+{% block main_container %}
+<div class="container">
+<form action="">
+    <div>
+        <button type="submit" class="btn btn-outline-primary"
+            formaction="/community/moveinreviews">돌아가기</button>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-10" style="font-size:40px; margin-bottom:15px;">{{review.review_title}}</div>
+    <form action="" class="col-1">
+        <button type="submit" class="btn btn-outline-primary"
+            formaction="/community/edit_review/{{review.id}}">수정</button>
+    </form>
+    <form action="/community/delete_review/{{ review.id }}" class="col-1" method="get">
+        <button type="submit" class="btn btn-outline-danger">삭제</button>
+    </form>
+</div>
+
+<img style="width:600px; height:600px" src="/images/{{ review.review_image }}" alt="사진">
+<div>{{review.review_content}}</div>
+
+
+<!-- 댓글 기능 추가 -->
+<hr>
+<div class="card-footer">
+    <form onsubmit="addComment(event)">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="댓글을 입력하세요" required>
+        </div>
+        <button type="submit" class="btn btn-primary">작성</button>
+    </form>
+    <div class="comments mt-3">
+    </div>
+</div>
+
+</div>
+{% endblock %}

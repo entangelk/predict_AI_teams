@@ -1,0 +1,103 @@
+{% extends "main_template.html"%}
+
+{% block title %}
+
+{% endblock %}
+
+{% block main_container %}
+<div class="container" style="padding-top: 70px; padding-bottom: 100px; text-align: center; background-color:bisque;">
+    <!-- 제목 -->
+    <span class="room_details brand">{{ rooms.room_brand }} </span>
+    <span class="room_details local">{{ rooms.room_local }} </span>
+    <span class="room_details title">{{ rooms.room_title }}</span>
+    <hr>
+    <!-- 이미지 슬라이드 -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ rooms.room_image }}" class="d-block w-100" style=" height: 800px;" alt="...">
+            </div>
+            <div class="carousel-item">
+                {% if rooms.room_image_two %}
+                <img src="{{ rooms.room_image_two }}" class="d-block w-100" style=" height: 800px;" alt="...">
+                {% else %}
+                <img src="{{ rooms.room_image }}" class="d-block w-100" style=" height: 800px;" alt="...">
+                {% endif %}
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- 버튼 -->
+    <div class="tab-btn-list" style=" text-align: center;" >
+        <div class="tab-btn" style="display:inline-block">지점 소개</div>
+        <div class="tab-btn" style="display:inline-block">상세 정보</div>
+        <div class="tab-btn" style="display:inline-block">위치 및 교통</div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            투어신청
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">투어 신청하기</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary">신청하기</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- 내용 -->
+    <div class="tab-list text-center">
+        <div> 지점 소개 </div>
+        <div>{{ rooms.room_text }}</div>
+        <hr>
+        <div> 상세 정보 </div>
+        <div>집 구성</div><div>{{ rooms.room_layout }}</div>
+        <div>거주인원/평수</div><div>{{ rooms.room_size }}</div>
+        <div>세대 추가 옵션</div><div>{{ rooms.room_default_option }}</div>
+        <div>월 이용 정상가</div><div>{{ rooms.room_price }}</div>
+        <div>월 이용 할인가</div><div>{{ rooms.room_discounted_price }}</div>
+        <div>비고</div><div>{{ rooms.room_note }}</div>
+        <div>기타</div><div>{{ rooms.room_any }}</div>
+        <hr>
+        <div> 위치 및 교통 </div>
+        <img src="/images/map.PNG" alt="">
+    </div>
+</div>
+{% endblock %}

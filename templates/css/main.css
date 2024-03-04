@@ -1,0 +1,85 @@
+.main_title {
+  background-color: rgba(138, 138, 138, 0.5);
+}
+.lead {
+  background-color: rgba(240, 240, 240, 0.5);
+}
+.search {
+  height: 90px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding-top: 23px;
+}
+.search_box { 
+  border: 1px solid #bbb;
+  border-radius: 100px;
+  margin-bottom: 120px;
+}
+.searchcss {
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+.searchbutton {
+  top: 3px;
+  right: 12px;
+  margin: 0;
+}
+
+
+hr {
+  margin-top: 80px;
+  margin-bottom: 100px;
+}
+
+
+.main_image {
+  position: relative;
+  opacity : 0.8;
+  background-size: cover;
+}
+.main_image_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate( -50%, -50% );
+  color: white;
+}
+
+.roomimg { 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-img-top {
+  overflow: hidden;
+  height: 250px;
+}
+.residency_review {
+  margin-top: 20px;
+  margin-bottom: 80px;
+}
+
+
+/* find_rooms */
+.find_rooms {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.room_details {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+/* room_details */
+.tab-btn-list { 
+  text-align: center;
+}
+.tab-btn { 
+  display:inline-block
+}
+

@@ -1,0 +1,116 @@
+{% extends "main_template.html"%}
+
+{% block title %}
+메인
+{% endblock %}
+
+{% block main_container %}
+<!-- main 상단 부분 -->
+<section class="py-5 text-center ">
+    <img class="main_image" src="/images/편안한집3.png"
+        width="100%" height="600px" />
+    <div class="row py-lg-5">
+        <div class="main_image_text col-lg-6 col-md-8 mx-auto">
+            <h1 class="main_title fw-light">CO Love House</h1>
+            <p class="lead text-body-secondary">새로운 방식으로 살아보는 코리빙 커뮤니티, CO Love House</p>
+            <p class="lead text-body-secondary">새로운 방식으로 살아보는 코리빙 커뮤니티, CO Love House</p>
+            <p class="lead text-body-secondary">새로운 방식으로 살아보는 코리빙 커뮤니티, CO Love House</p>
+        </div>
+    </div>
+    <!-- <img src="https://woozoo.s3.ap-northeast-2.amazonaws.com/uploads/image/data/tiny/1642037954.png" width="100%" height="200px"/> -->
+</section>
+<div class="container" >
+<h1 style="text-align: center;">검색해보세요^^</h1>
+<!-- 검색 부분 -->
+<form action="">
+    <div class="search_box">
+        <div class="search row">
+            <div class="col-2">
+                <select class="form-control" name="room_brand">
+                    <option value="none">브랜드</option>
+                    <option value="dears">디어스</option>
+                    <option value="mangrove">맹그로브</option>
+                    <option value="hapoom">하품</option>
+                    <option value="commontown">커먼타운</option>
+                    <option value="episode">에피소드</option>
+                </select>
+            </div>
+            <div class="col-2">
+                <select class="form-control" name="room_type">
+                    <option value="none">룸 형태</option>
+                    <option value="single">1인실</option>
+                    <option value="double">2인실</option>
+                    <option value="dormitory">다인실</option>
+                </select>
+            </div>
+            <div class="col-7">
+                <input class=searchcss type="search" placeholder="지역명을 입력해 보세요" name="search">
+            </div>
+            <div class="col-1">
+                <button type="submit" class="searchbutton btn btn-outline-primary" formaction="/room/find_rooms"
+                    formmethod="post">검색</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- 추천 rooms 부분 -->
+<h2>추천 rooms</h2>
+<div class="album py-3 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for room in rooms %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <a href="/room/room_details/{{room.id}}">
+                            <div class="card-img-top">
+                                <img class="roomimg"
+                                    src="{{ room.room_image }}" >
+                            </div>
+                            <div class="card-body">
+                                <span class="brand">{{ room.room_brand }}</span>
+                                <span class="local">{{ room.room_local }}</span>
+                                <span class="title">{{ room.room_title }}</span>
+                                <span class="favorite">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-danger">찜</button>
+                                    </div>                                    
+                                </span>
+                                <div class="room_type">{{ room.room_type }}</div>
+                                <div class="room_size">{{ room.room_size }}</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<hr>
+<!-- 입주 후기 부분 -->
+<form  class="row" action="">      
+    <h2 class="col-3">입주 후기</h2>
+    <div class="col-8"></div>
+    <button class="col-1 btn btn-outline-primary" formaction="/community/moveinreviews">더보기</button>
+</form>
+
+
+<div class="residency_review row row-cols-1 row-cols-sm-2 row-cols-md-4">
+    {% for review in reviews %}
+    <div class="col-md-3">
+        <a href="/community/reviewdetails/{{ review.id }}">
+            <div class="card">
+                <img src="/images/{{ review.review_image }}"
+                    class="card-img-top" alt="사진">
+                <div class="card-body">
+                    <h5 class="card-title">{{ review.review_title }}</h5>
+                </div>
+            </div>            
+        </a>
+    </div>
+    {% endfor %}
+    
+</div>
+</div>
+{% endblock %}

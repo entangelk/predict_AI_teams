@@ -1,0 +1,86 @@
+{% extends "main_template.html"%}
+
+{% block title %}
+로그인
+{% endblock %}
+
+{% block main_container %}
+<div class="container" >
+<div class="row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h1 class="fw-bold mb-0 fs-2">일반 회원</h1>
+                    </div>
+
+                    <div class="modal-body p-5 pt-0">
+                        <form class="">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control rounded-3" id="floatingInput" name="email"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput">Email address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control rounded-3" id="floatingPassword" name="pswd"
+                                    placeholder="Password">
+                                <label for="floatingPassword">Password</label>
+                            </div>
+                            <div class="row">
+                                <p class="col-1"></p>
+                                <button class="col-4 mb-2 btn btn-lg rounded-3 btn-primary" formaction="/" formmethod="post" type="submit" >Login</button>
+                                <p class="col-2"></p>
+                                <button class="col-4 mb-2 btn btn-lg rounded-3 btn-primary" formaction="/login/usersignups" formmethod="get" type="submit" >Sign up</button>
+                                <p class="col-1"></p>
+                            </div>
+                            <small class="text-body-secondary">By clicking Sign up, you agree to the terms of
+                                use.</small>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="modal modal-sheet position-static d-block p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-4 shadow">
+                    <div class="modal-header p-5 pb-4 border-bottom-0">
+                        <h1 class="fw-bold mb-0 fs-2">기업 회원</h1>
+                    </div>
+        
+                    <div class="modal-body p-5 pt-0">
+                        <form action="">
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control rounded-3" id="floatingInput" name="email"
+                                    placeholder="name@example.com">
+                                <label for="floatingInput">Email address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control rounded-3" id="floatingPassword" name="password"
+                                    placeholder="Password">
+                                <label for="floatingPassword">Password</label>
+                            </div>
+                            <div class="row">
+                                <p class="col-1"></p>
+                                <button class="col-4 mb-2 btn btn-lg rounded-3 btn-primary" formaction="/enter" formmethod="post" type="submit" >Login</button>
+                                <p class="col-2"></p>
+                                <button class="col-4 mb-2 btn btn-lg rounded-3 btn-primary" formaction="/login/entersignups" formmethod="get" type="submit" >Sign up</button>
+                                <p class="col-1"></p>
+                            </div>
+
+                            <small class="text-body-secondary">By clicking Sign up, you agree to the terms of
+                                use.</small>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
