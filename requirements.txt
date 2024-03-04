@@ -7,6 +7,8 @@ numpy
 
 imblearn
 xgboost
+catboost
+ngboost
 lightgbm 
 yellowbrick
 
